@@ -1,0 +1,448 @@
+{
+ "tag": "INFECT",
+ "outcome_column": "nhis__감염병__진료실인원수",
+ "outcome_label_en": "Treated patients for infectious and parasitic diseases (ICD-10 A00-B99, NHIS, annual)",
+ "disease_ko": "감염성·기생충성 질환 진료",
+ "disease_en": "Infectious and parasitic diseases (care)",
+ "forced": [
+  "urban_population_share",
+  "physicians_per_1000",
+  "sex_ratio",
+  "fiscal_independence",
+  "pop80_share"
+ ],
+ "candidates": [
+  "screening_suspected_diabetes_share",
+  "screening_normalB_obesity_share",
+  "current_smoking_rate",
+  "long_term_care_hospitals_per_100k",
+  "basic_livelihood_rate",
+  "single_person_household_share",
+  "annual_mean_temperature",
+  "public_baths_per_10k",
+  "public_pools_per_100k",
+  "screening_uptake",
+  "walking_practice_rate",
+  "moderate_pa_rate",
+  "public_sports_facilities_per_100k"
+ ],
+ "negative_controls": [
+  "cpr_awareness_rate",
+  "road_pavement_rate",
+  "fires_per_10000"
+ ],
+ "sets": {
+  "S1_narrative_full": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "single_person_household_share",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "screening_uptake",
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k"
+  ],
+  "S2_core": [
+   "screening_suspected_diabetes_share",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "screening_uptake"
+  ],
+  "S3_physical_activity": [
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k",
+   "public_pools_per_100k"
+  ],
+  "S4_host_susceptibility": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k"
+  ],
+  "S5_environment_exposure": [
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "single_person_household_share"
+  ],
+  "S6_care_access_deprivation": [
+   "basic_livelihood_rate",
+   "screening_uptake",
+   "long_term_care_hospitals_per_100k"
+  ],
+  "S1b_obesity_sensitivity": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "single_person_household_share",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "screening_uptake",
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k",
+   "obesity_rate"
+  ]
+ },
+ "sensitivity_sets": [
+  "S1b_obesity_sensitivity"
+ ],
+ "sensitivity_only_vars": [
+  "obesity_rate",
+  "outside_care_share"
+ ],
+ "offset_column": "population",
+ "offset_sensitivity": null,
+ "offset_fallback": null,
+ "exclude_years": [],
+ "vars": {
+  "urban_population_share": {
+   "key": "urban_population_share",
+   "column": "eloc__DT_1YL20421E__1인당도시지역면적현황__도시지역인구",
+   "transform": "pct_of_pop",
+   "label_en": "Urban-zone population share (%)",
+   "label_ko": "도시지역 인구 비율",
+   "expected_direction": "±",
+   "role": "forced",
+   "raw_key": "eloc__DT_1YL20421E__1인당도시지역면적현황__도시지역인구"
+  },
+  "physicians_per_1000": {
+   "key": "physicians_per_1000",
+   "column": "eloc__DT_1YL20981__인구천명당의료기관종사의사수＜br＞(A÷B×1000)",
+   "transform": "none",
+   "label_en": "Physicians per 1000",
+   "label_ko": "인구 천명당 의사 수",
+   "expected_direction": "+",
+   "role": "forced",
+   "raw_key": "eloc__DT_1YL20981__인구천명당의료기관종사의사수＜br＞(A÷B×1000)"
+  },
+  "sex_ratio": {
+   "key": "sex_ratio",
+   "column": "eloc__DT_1YL20701__남녀성비＜br＞(A÷B×100)",
+   "transform": "none",
+   "label_en": "Sex ratio (men per 100 women)",
+   "label_ko": "남녀성비",
+   "expected_direction": "±",
+   "role": "forced",
+   "raw_key": "eloc__DT_1YL20701__남녀성비＜br＞(A÷B×100)"
+  },
+  "fiscal_independence": {
+   "key": "fiscal_independence",
+   "column": "eloc__DT_1YL20891__재정자주도(세입과목개편전)",
+   "transform": "none",
+   "label_en": "Fiscal independence (%)",
+   "label_ko": "재정자주도",
+   "expected_direction": "±",
+   "role": "forced",
+   "raw_key": "eloc__DT_1YL20891__재정자주도(세입과목개편전)"
+  },
+  "pop80_share": {
+   "key": "pop80_share",
+   "column": "ext__pop80_share",
+   "transform": "none",
+   "label_en": "Population aged 80+ share (%)",
+   "label_ko": "80세 이상 인구 비율",
+   "expected_direction": "",
+   "role": "forced",
+   "raw_key": "ext__pop80_share"
+  },
+  "screening_suspected_diabetes_share": {
+   "key": "screening_suspected_diabetes_share",
+   "column": "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율",
+   "transform": "none",
+   "label_en": "Screening-measured suspected diabetes share (%)",
+   "label_ko": "검진 당뇨 질환의심 비율",
+   "expected_direction": "+ (검진 측정 당뇨병 의심 비율: 고혈당은 대상포진·칸디다증·피부사상균증·세균 피부감염 위험 증가, 면역 저하의 대사 경로)",
+   "role": "candidate",
+   "raw_key": "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율"
+  },
+  "screening_normalB_obesity_share": {
+   "key": "screening_normalB_obesity_share",
+   "column": "chk__정상B_비만관리_수검자대비비율",
+   "transform": "none",
+   "label_en": "Screening normal-B obesity-management share (%)",
+   "label_ko": "검진 정상B 비만관리 비율",
+   "expected_direction": "+ (검진 측정 비만 관리 필요 비율: 접힘 부위 습윤·마찰로 칸디다·백선 증가, 비만은 대상포진 위험 소폭 증가)",
+   "role": "candidate",
+   "raw_key": "chk__정상B_비만관리_수검자대비비율"
+  },
+  "current_smoking_rate": {
+   "key": "current_smoking_rate",
+   "column": "kchs__DT_H_SM__SR",
+   "transform": "none",
+   "label_en": "Current smoking rate (SR %)",
+   "label_ko": "현재흡연율",
+   "expected_direction": "+ (현재흡연율, 연령표준화: 점막 방어·세포 면역 저하, 결핵·HPV 지속 감염 위험)",
+   "role": "candidate",
+   "raw_key": "kchs__DT_H_SM__SR"
+  },
+  "long_term_care_hospitals_per_100k": {
+   "key": "long_term_care_hospitals_per_100k",
+   "column": "chk__요양기관_요양병원",
+   "transform": "per100k",
+   "label_en": "Long-term care hospitals per 100k",
+   "label_ko": "요양병원 수(10만 명당)",
+   "expected_direction": "+ (요양병원 인구 10만 명당: 시설 내 옴·진균·욕창 감염과 고령·와상 환자의 진료 집중, 면역 저하 인구의 시설 거주 대리)",
+   "role": "candidate",
+   "raw_key": "chk__요양기관_요양병원"
+  },
+  "basic_livelihood_rate": {
+   "key": "basic_livelihood_rate",
+   "column": "ext__basic_livelihood_rate",
+   "transform": "none",
+   "label_en": "Basic-livelihood security recipient rate (%)",
+   "label_ko": "국민기초생활보장 수급자 비율",
+   "expected_direction": "+ (기초생활 수급률, 2021-23 일반구 시 결함 정정: 박탈·주거 과밀·위생 자원 부족, 피부 감염·결핵·기생충 위험)",
+   "role": "candidate",
+   "raw_key": "ext__basic_livelihood_rate"
+  },
+  "single_person_household_share": {
+   "key": "single_person_household_share",
+   "column": "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)",
+   "transform": "none",
+   "label_en": "Single-person household share (%)",
+   "label_ko": "1인가구비율",
+   "expected_direction": "+ (1인 가구 비율: 성매개감염·단순포진 연구에서 생활 형태 표지, 돌봄 공백)",
+   "role": "candidate",
+   "raw_key": "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)"
+  },
+  "annual_mean_temperature": {
+   "key": "annual_mean_temperature",
+   "column": "ext__temp_annual",
+   "transform": "none",
+   "label_en": "Annual mean temperature (°C)",
+   "label_ko": "연평균 기온(℃)",
+   "expected_direction": "+ (연평균 기온, 관측소 IDW: 고온·다습 환경에서 피부사상균·칸디다 증식, 백선 계절성)",
+   "role": "candidate",
+   "raw_key": "ext__temp_annual"
+  },
+  "public_baths_per_10k": {
+   "key": "public_baths_per_10k",
+   "column": "ext__public_baths_per10k",
+   "transform": "none",
+   "label_en": "Public bathhouses per 10 000",
+   "label_ko": "목욕장업 수(인구 1만 명당)",
+   "expected_direction": "+ (목욕장업 인구 1만 명당: 공용 습윤 바닥을 통한 족부 백선·사마귀 전파 경로)",
+   "role": "candidate",
+   "raw_key": "ext__public_baths_per10k"
+  },
+  "public_pools_per_100k": {
+   "key": "public_pools_per_100k",
+   "column": "fac__수영장",
+   "transform": "per100k",
+   "label_en": "Public swimming pools per 100k",
+   "label_ko": "공공 수영장 수(10만 명당)",
+   "expected_direction": "+ (공공 수영장 인구 10만 명당: 족저 사마귀·족부 백선·전염성 연속종 전파 장소)",
+   "role": "candidate",
+   "raw_key": "fac__수영장"
+  },
+  "screening_uptake": {
+   "key": "screening_uptake",
+   "column": "chk__수검률",
+   "transform": "none",
+   "label_en": "Health screening uptake (%)",
+   "label_ko": "건강검진 수검률",
+   "expected_direction": "+ (일반검진 수검률: 의료 이용 성향·피부·감염 증상의 진료 문턱, 검출 경로)",
+   "role": "candidate",
+   "raw_key": "chk__수검률"
+  },
+  "walking_practice_rate": {
+   "key": "walking_practice_rate",
+   "column": "kchs__DT_H_EX_WALK__SR",
+   "transform": "none",
+   "label_en": "Walking practice rate (SR %)",
+   "label_ko": "걷기 실천율",
+   "expected_direction": "- (걷기 실천율: 신체활동은 세포 면역 유지·대상포진 위험 감소와 연관)",
+   "role": "candidate",
+   "raw_key": "kchs__DT_H_EX_WALK__SR"
+  },
+  "moderate_pa_rate": {
+   "key": "moderate_pa_rate",
+   "column": "kchs__DT_H_EX_PHY__SR",
+   "transform": "none",
+   "label_en": "Moderate-or-higher physical activity rate (SR %)",
+   "label_ko": "중강도 이상 신체활동 실천율",
+   "expected_direction": "- (중강도 이상 신체활동 실천율: 같은 면역 경로)",
+   "role": "candidate",
+   "raw_key": "kchs__DT_H_EX_PHY__SR"
+  },
+  "public_sports_facilities_per_100k": {
+   "key": "public_sports_facilities_per_100k",
+   "column": "fac__total",
+   "transform": "per100k",
+   "label_en": "Public sports facilities per 100k",
+   "label_ko": "공공체육시설 수(10만 명당)",
+   "expected_direction": "- (공공체육시설 인구 10만 명당: 신체활동 기회 환경)",
+   "role": "candidate",
+   "raw_key": "fac__total"
+  },
+  "obesity_rate": {
+   "key": "obesity_rate",
+   "column": "kchs__DT_H_OBE_OBE__SR",
+   "transform": "none",
+   "label_en": "Obesity rate (self-reported SR %)",
+   "label_ko": "비만율(자가보고)",
+   "expected_direction": "",
+   "role": "candidate_sensitivity",
+   "raw_key": "kchs__DT_H_OBE_OBE__SR"
+  },
+  "outside_care_share": {
+   "key": "outside_care_share",
+   "column": "ext__outside_care_share",
+   "transform": "none",
+   "label_en": "Out-of-district outpatient share (%)",
+   "label_ko": "관외 외래 진료 비율",
+   "expected_direction": "",
+   "role": "candidate_sensitivity",
+   "raw_key": "ext__outside_care_share"
+  },
+  "cpr_awareness_rate": {
+   "key": "cpr_awareness_rate",
+   "column": "kchs__DT_CPR_AWAR__SR",
+   "transform": "none",
+   "label_en": "CPR awareness rate (SR %)",
+   "label_ko": "심폐소생술 인지율",
+   "expected_direction": "0",
+   "role": "negative",
+   "raw_key": "kchs__DT_CPR_AWAR__SR"
+  },
+  "road_pavement_rate": {
+   "key": "road_pavement_rate",
+   "column": "eloc__DT_1YL20721__도로포장률＜br＞(A÷B×100)",
+   "transform": "none",
+   "label_en": "Road pavement rate (%)",
+   "label_ko": "도로포장률",
+   "expected_direction": "0",
+   "role": "negative",
+   "raw_key": "eloc__DT_1YL20721__도로포장률＜br＞(A÷B×100)"
+  },
+  "fires_per_10000": {
+   "key": "fires_per_10000",
+   "column": "eloc__DT_1YL21081__주민만명당화재발생건수＜br＞(A÷B×10000)",
+   "transform": "none",
+   "label_en": "Fires per 10000 residents",
+   "label_ko": "주민 만명당 화재 건수",
+   "expected_direction": "0",
+   "role": "negative",
+   "raw_key": "eloc__DT_1YL21081__주민만명당화재발생건수＜br＞(A÷B×10000)"
+  }
+ },
+ "rules": {
+  "waic_tol": 4.0,
+  "cpo_fail_frac": 0.05,
+  "main_set": "S1_narrative_full",
+  "vif_threshold": 10.0,
+  "vif_action": "report",
+  "multiverse_n": 200,
+  "windows": {
+   "W1_2011-15": [
+    2011,
+    2015
+   ],
+   "W2_2016-19": [
+    2016,
+    2019
+   ],
+   "W3_2020-24": [
+    2020,
+    2024
+   ]
+  },
+  "covid_post_from": 2020,
+  "years": [
+   2011,
+   2024
+  ],
+  "raw_rules": {
+   "likelihood": "forced-only 모형 WAIC 낮은 쪽(Poisson/NB)",
+   "set_choice": "WAIC 최소, 4 이내면 변수 적은 세트",
+   "credible": "95% CrI 1 제외",
+   "vif_drop": 10,
+   "multiverse_specs": 200,
+   "main_model_note": "주모형 = S1_narrative_full(가설 13 + 강제통제 5). 세트를 다시 바꾸지 않음. VIF>10 유지·보고."
+  },
+  "main_model_note": "Principal model = S1_narrative_full (13 district characteristics + 5 forced controls). VIF>10 retained and reported."
+ },
+ "note": "Outcome: people treated for infectious and parasitic diseases (A00-B99). Covariates selected from the literature on skin, mucosal and reactivated infections and care use: suspected diabetes and obesity at screening, current smoking, long-term care hospitals, basic livelihood security recipients (2021-2023 collapsed values in 11 cities interpolated), single-person households, annual mean temperature, public bathhouses, public swimming pools, health screening uptake, walking, moderate-or-vigorous activity and public sports facilities. Per-100k denominators are the master population. Expected counts standardized by sex and age.",
+ "source_json": "sets_INFECT_std3.json",
+ "suffix": "_std3",
+ "offset_E_column": "E_sexage",
+ "offset_E_file": "INFECT_Estd2.csv",
+ "offset_E_sensitivity_column": null,
+ "offset_E_label": "sex- and age-standardised E, 2 sexes x 10 age bands (E_sexage)",
+ "sets_after_vif": {
+  "S1_narrative_full": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "single_person_household_share",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "screening_uptake",
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k"
+  ],
+  "S2_core": [
+   "screening_suspected_diabetes_share",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "screening_uptake"
+  ],
+  "S3_physical_activity": [
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k",
+   "public_pools_per_100k"
+  ],
+  "S4_host_susceptibility": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k"
+  ],
+  "S5_environment_exposure": [
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "single_person_household_share"
+  ],
+  "S6_care_access_deprivation": [
+   "basic_livelihood_rate",
+   "screening_uptake",
+   "long_term_care_hospitals_per_100k"
+  ],
+  "S1b_obesity_sensitivity": [
+   "screening_suspected_diabetes_share",
+   "screening_normalB_obesity_share",
+   "current_smoking_rate",
+   "long_term_care_hospitals_per_100k",
+   "basic_livelihood_rate",
+   "single_person_household_share",
+   "annual_mean_temperature",
+   "public_baths_per_10k",
+   "public_pools_per_100k",
+   "screening_uptake",
+   "walking_practice_rate",
+   "moderate_pa_rate",
+   "public_sports_facilities_per_100k",
+   "obesity_rate"
+  ]
+ }
+}

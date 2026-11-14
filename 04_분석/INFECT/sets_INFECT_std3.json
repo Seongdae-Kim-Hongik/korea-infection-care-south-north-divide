@@ -1,0 +1,152 @@
+{
+ "tag": "INFECT",
+ "outcome_column": "nhis__감염병__진료실인원수",
+ "outcome_label_en": "Treated patients for infectious and parasitic diseases (ICD-10 A00-B99, NHIS, annual)",
+ "disease_en": "Infectious and parasitic diseases (care)",
+ "disease_ko": "감염성·기생충성 질환 진료",
+ "forced": [
+  "eloc__DT_1YL20421E__1인당도시지역면적현황__도시지역인구",
+  "eloc__DT_1YL20981__인구천명당의료기관종사의사수＜br＞(A÷B×1000)",
+  "eloc__DT_1YL20701__남녀성비＜br＞(A÷B×100)",
+  "eloc__DT_1YL20891__재정자주도(세입과목개편전)",
+  "ext__pop80_share"
+ ],
+ "negative_controls": [
+  "kchs__DT_CPR_AWAR__SR",
+  "eloc__DT_1YL20721__도로포장률＜br＞(A÷B×100)",
+  "eloc__DT_1YL21081__주민만명당화재발생건수＜br＞(A÷B×10000)"
+ ],
+ "sets": {
+  "S1_narrative_full": [
+   "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율",
+   "chk__정상B_비만관리_수검자대비비율",
+   "kchs__DT_H_SM__SR",
+   "chk__요양기관_요양병원",
+   "ext__basic_livelihood_rate",
+   "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)",
+   "ext__temp_annual",
+   "ext__public_baths_per10k",
+   "fac__수영장",
+   "chk__수검률",
+   "kchs__DT_H_EX_WALK__SR",
+   "kchs__DT_H_EX_PHY__SR",
+   "fac__total"
+  ],
+  "S2_core": [
+   "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율",
+   "chk__요양기관_요양병원",
+   "ext__basic_livelihood_rate",
+   "ext__temp_annual",
+   "ext__public_baths_per10k",
+   "chk__수검률"
+  ],
+  "S3_physical_activity": [
+   "kchs__DT_H_EX_WALK__SR",
+   "kchs__DT_H_EX_PHY__SR",
+   "fac__total",
+   "fac__수영장"
+  ],
+  "S4_host_susceptibility": [
+   "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율",
+   "chk__정상B_비만관리_수검자대비비율",
+   "kchs__DT_H_SM__SR",
+   "chk__요양기관_요양병원"
+  ],
+  "S5_environment_exposure": [
+   "ext__temp_annual",
+   "ext__public_baths_per10k",
+   "fac__수영장",
+   "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)"
+  ],
+  "S6_care_access_deprivation": [
+   "ext__basic_livelihood_rate",
+   "chk__수검률",
+   "chk__요양기관_요양병원"
+  ]
+ },
+ "transform": {
+  "eloc__DT_1YL20421E__1인당도시지역면적현황__도시지역인구": "share_of_pop(도시지역인구÷population(마스터))",
+  "eloc__DT_1YL20981__인구천명당의료기관종사의사수＜br＞(A÷B×1000)": "none",
+  "eloc__DT_1YL20701__남녀성비＜br＞(A÷B×100)": "none",
+  "eloc__DT_1YL20891__재정자주도(세입과목개편전)": "none",
+  "ext__pop80_share": "none",
+  "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율": "none",
+  "chk__정상B_비만관리_수검자대비비율": "none",
+  "kchs__DT_H_SM__SR": "none",
+  "chk__요양기관_요양병원": "per100k",
+  "ext__basic_livelihood_rate": "none",
+  "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)": "none",
+  "ext__temp_annual": "none",
+  "ext__public_baths_per10k": "none",
+  "fac__수영장": "per100k",
+  "chk__수검률": "none",
+  "kchs__DT_H_EX_WALK__SR": "none",
+  "kchs__DT_H_EX_PHY__SR": "none",
+  "fac__total": "per100k",
+  "kchs__DT_CPR_AWAR__SR": "none",
+  "eloc__DT_1YL20721__도로포장률＜br＞(A÷B×100)": "none",
+  "eloc__DT_1YL21081__주민만명당화재발생건수＜br＞(A÷B×10000)": "none",
+  "ext__outside_care_share": "none"
+ },
+ "expected_direction": {
+  "chk__질환의심_고혈압당뇨_당뇨병_수검자대비비율": "+",
+  "chk__정상B_비만관리_수검자대비비율": "+",
+  "kchs__DT_H_SM__SR": "+",
+  "chk__요양기관_요양병원": "+",
+  "ext__basic_livelihood_rate": "+",
+  "eloc__DT_1YL21161__1인가구비율＜br＞(A÷B×100)": "+",
+  "ext__temp_annual": "+",
+  "ext__public_baths_per10k": "+",
+  "fac__수영장": "+",
+  "chk__수검률": "+",
+  "kchs__DT_H_EX_WALK__SR": "-",
+  "kchs__DT_H_EX_PHY__SR": "-",
+  "fac__total": "-"
+ },
+ "rules": {
+  "likelihood": "forced-only 모형 WAIC 낮은 쪽(Poisson/NB)",
+  "set_choice": "WAIC 최소, 4 이내면 변수 적은 세트",
+  "credible": "95% CrI 1 제외",
+  "vif_drop": 10,
+  "multiverse_specs": 200,
+  "main_model_note": "Principal model = S1_narrative_full (13 district characteristics + 5 forced controls). VIF>10 retained and reported."
+ },
+ "note": "Outcome: people treated for infectious and parasitic diseases (A00-B99). Covariates selected from the literature on skin, mucosal and reactivated infections and care use: suspected diabetes and obesity at screening, current smoking, long-term care hospitals, basic livelihood security recipients (2021-2023 collapsed values in 11 cities interpolated), single-person households, annual mean temperature, public bathhouses, public swimming pools, health screening uptake, walking, moderate-or-vigorous activity and public sports facilities. Per-100k denominators are the master population. Expected counts standardized by sex and age.",
+ "extra_columns": {
+  "ext__pop80_share": [
+   "INFECT_Estd2.csv",
+   "pop80_share_raw"
+  ],
+  "ext__basic_livelihood_rate": [
+   "EXT_canonical_pool_INFECT_261109.csv",
+   "basic_livelihood_rate"
+  ],
+  "ext__public_baths_per10k": [
+   "EXT_canonical_pool_INFECT_261109.csv",
+   "public_baths_per10k"
+  ],
+  "ext__temp_annual": [
+   "EXT_canonical_pool_INFECT_261109.csv",
+   "temp_annual"
+  ],
+  "ext__outside_care_share": [
+   "EXT_canonical_pool_261106.csv",
+   "outside_care_share"
+  ]
+ },
+ "sensitivity_only_extra": [
+  "ext__outside_care_share"
+ ],
+ "offset_E_column": "E_sexage",
+ "offset_E_label": "sex- and age-standardised E, 2 sexes x 10 age bands (E_sexage)",
+ "offset_E_file": "INFECT_Estd2.csv",
+ "graph": "593-edge contact graph, ST_GRAPH=04_분석/INFECT/graph_593.graph",
+ "population_override": [
+  {
+   "year": 2023,
+   "fbd_region": "경상남도창원시",
+   "population": 1009038,
+   "source": "KOSIS DT_1YL20651E 2023 통합창원시 계; FBD_DATA_ZIP/2023.csv 창원 블록이 2022값 복사(유방암 11/4 population_final_audit)"
+  }
+ ]
+}
