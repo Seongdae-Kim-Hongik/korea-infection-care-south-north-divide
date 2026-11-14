@@ -21,6 +21,7 @@ ok("2011" in ab and "2024" in ab, "초록에 자료 기간")
 KW = [k.strip() for k in C.KEYWORDS.split(";")]; ok(4 <= len(KW) <= 6, f"키워드 {len(KW)}개(4-6)")
 ok(":" not in TITLE and "229" not in TITLE and "standardi" not in TITLE.lower() and not re.search(r"\b[A-Z]{2,}\b", TITLE) and len(TITLE.split()) <= 22, "제목 쌍점·약어·시리즈 틀 없음")
 d = Document(os.path.join(OUT, MSF)); _ps = [p.text.strip() for p in d.paragraphs]; _dx = "\n".join(_ps)
+ok("Statements and Declarations" not in _dx and "Data availability" not in _dx, "원고에 선언문 블록 없음(포털 칸에만)")
 heads = [p for p in _ps if re.match(r"^\d+(\.\d+)* [A-Z]", p) and len(p) < 90]
 ok(heads[:2] == ["1 Introduction", "2 Data and Methods"] and all(h.count(".") <= 2 for h in heads) and "5 Conclusions" in heads, f"십진 제목 3단계 이하({len(heads)}개)")
 ok(len(d.tables) == 2, "표 2")
@@ -49,7 +50,7 @@ exp = [k for k in sorted(KEYS, key=list_sortkey)]
 import unicodedata as _u
 _fk = ["".join(c for c in _u.normalize("NFKD", r.split(",")[0].split(".")[0]) if not _u.combining(c)).lower().replace(" ", "") for r in refl]
 ok(_fk == sorted(_fk), f"참고문헌 첫 저자 알파벳순 {[ (a,b) for a,b in zip(_fk,_fk[1:]) if a>b][:2]}")
-body = re.sub(r"\s+", " ", _dx[_dx.find("\n1 Introduction\n"):_dx.find("\nStatements and Declarations\n")])
+body = re.sub(r"\s+", " ", _dx[_dx.find("\n1 Introduction\n"):_dx.find("\nReferences\n")])
 cites = re.findall(r"\(([^()]*?\d{4}[a-h]?(?:, \d{4}[a-h]?)*(?:; [^()]*?\d{4}[a-h]?(?:, \d{4}[a-h]?)*)*)\)", body)
 labs = set()
 for g in cites:
@@ -89,7 +90,7 @@ ok(not re.search(r"\bsignifican", _dx + sup, re.I), "'significant' 없음")
 UK = r"\b(\w*(standardis|harmonis|summaris|characteris(?=e|ed|ing|ation)|categoris|minimis|randomis|generalis|normalis|prioritis|organis|utilis)\w*|analys(e|ed|ing)|modelled|modelling|centre(s|d)?|neighbour\w*|behaviour\w*|ageing|colour|favour\w*|labelled|grey|programme)\b"
 uk = sorted(set(m.group(0) for m in re.finditer(UK, body + " " + sup + " " + cov))); ok(not uk, f"영국식 철자 없음(본문·보충·커버) {uk}")
 ok("−" in body, "마이너스 U+2212")
-disc = _dx[_dx.find("\n4 Discussion\n"):_dx.find("\nStatements and Declarations\n")]
+disc = _dx[_dx.find("\n4 Discussion\n"):_dx.find("\nReferences\n")]
 disc_nc = re.sub(r"\([^()]*\d{4}[a-h]?\)", "", disc).replace("COVID-19", "COVID"); disc_nc = re.sub(r"\n\d(\.\d+)? [^\n]+", "\n", disc_nc)
 _dn = re.findall(r".{15}\d.{8}", disc_nc)[:3]; ok(not _dn, f"고찰·결론에 숫자 없음 {_dn}")
 for k, lab in C.SUP.items():

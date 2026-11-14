@@ -146,10 +146,7 @@ def build(bw=0, aw=0):
         if p.startswith("### "): i += 1; J.head(f"4.{i} {p[4:].strip()}", 2); continue
         J.para(pandoc_cites(p), indent=True)
     J.counting = False
-    J.head("Statements and Declarations", 1)
-    J.para("<b>Competing interests</b> " + "Disclosed on the separate title page.")
-    J.para("<b>Ethics approval</b> " + IRB_ANON)
-    J.para("<b>Data availability</b> " + data_statement(anon=True))
+    # 선언문(경쟁 이익·윤리·자료 공개·감사)은 SNAPP 포털 칸에만 넣는다(포털 안내: 이중 익명이라 원고에 넣지 말 것)
     assert sorted(set(J.cites)) == KEYS, (set(J.cites) ^ set(KEYS))
     J.page_break(); J.head("References", 1); rl = []
     for k in sorted(set(J.cites), key=list_sortkey):
@@ -181,7 +178,7 @@ def fix_orphans(path, heads, max_iter=10):   # 쪽 끝 고아 제목 → 그 제
 def docx_bw(path):
     from docx import Document
     t = "\n".join(x.text for x in Document(path).paragraphs)
-    return len(t[t.find("\n1 Introduction\n"):t.find("\nStatements and Declarations\n")].split())
+    return len(t[t.find("\n1 Introduction\n"):t.find("\nReferences\n")].split())
 
 if __name__ == "__main__":
     p = os.path.join(OUT, "Manuscript.docx"); D = read_draft()
@@ -189,7 +186,7 @@ if __name__ == "__main__":
     J, rl, D = build(); J.doc_title = "Manuscript"; J.save(p); bw = docx_bw(p)
     J, rl, D = build(bw, aw); J.doc_title = "Manuscript"; J.save(p); assert docx_bw(p) == bw
     from docx import Document
-    heads = {x.text.strip() for x in Document(p).paragraphs if re.match(r"^(\d(\.\d+)? |Abstract$|References$|Figure captions$|Statements and Declarations$)", x.text.strip())}
+    heads = {x.text.strip() for x in Document(p).paragraphs if re.match(r"^(\d(\.\d+)? |Abstract$|References$|Figure captions$)", x.text.strip())}
     fix_orphans(p, heads)
     tot = len("\n".join(x.text for x in Document(p).paragraphs).split())
     open(os.path.join(OUT, "wordcount_asap.txt"), "w").write(f"body_words={bw}\nabstract_words={aw}\nrefs={len(KEYS)}\ntables=2\nfigures=2\ntitle_words={len(TITLE.split())}\ntotal_words={tot}\n")
